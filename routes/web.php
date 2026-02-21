@@ -7,7 +7,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth'/*, 'verified'*/])
+    ->middleware(['auth'/* , 'verified' */])
     ->name('dashboard');
+
+// Admin Routes
+Route::prefix('admin')->name('admin.')->group(base_path('routes/admin.php'));
 
 require __DIR__.'/settings.php';
