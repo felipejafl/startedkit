@@ -1,0 +1,40 @@
+
+   FAIL  Tests\Feature\Admin\MailAccountsTest
+  Ô£ô Mail Accounts Management - Page Access ÔåÆ admin can view mail accounÔÇª 0.49s  
+  Ô¿» Mail Accounts Management - Page Access ÔåÆ unauthorized user is redirÔÇª 0.09s  
+  Ô£ô Mail Accounts Management - Page Access ÔåÆ super admin can view mailÔÇª  0.12s  
+  Ô£ô Mail Account Model ÔåÆ mail account can be created                     0.06s  
+  Ô£ô Mail Account Model ÔåÆ mail account password is encrypted              0.04s  
+  Ô£ô Mail Account Model ÔåÆ mail account can have is_active toggled         0.05s  
+  Ô£ô Mail Account Model ÔåÆ email must be unique                            0.04s  
+  Ô£ô Mail Account Factory ÔåÆ factory creates valid mail account            0.04s  
+  Ô£ô Mail Account Factory ÔåÆ factory creates accounts with valid IMAP porÔÇª 0.05s  
+  Ô£ô Mail Account Factory ÔåÆ factory creates accounts with valid SMTP porÔÇª 0.04s  
+  Ô£ô Mail Account Factory ÔåÆ factory creates accounts with valid securityÔÇª 0.04s  
+  Ô£ô Mail Account Policy ÔåÆ admin can view any mail accounts               0.05s  
+  Ô£ô Mail Account Policy ÔåÆ admin can view specific mail account           0.04s  
+  Ô£ô Mail Account Policy ÔåÆ admin can create mail account                  0.05s  
+  Ô£ô Mail Account Policy ÔåÆ admin can update mail account                  0.05s  
+  Ô£ô Mail Account Policy ÔåÆ admin can delete mail account                  0.04s  
+  Ô£ô Mail Account Policy ÔåÆ unauthorized user cannot view any mail accounÔÇª 0.04s  
+  Ô£ô Mail Account Policy ÔåÆ super admin can do everything                  0.04s  
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\MailAccountsTest > `Mail Accounts ManagementÔÇª    
+  Expected response status code [302] but received 403.
+Failed asserting that 403 is identical to 302.
+
+  at tests\Feature\Admin\MailAccountsTest.php:37
+     33Ôûò         $response = $this->actingAs($this->user)
+     34Ôûò             ->get('/admin/mail-accounts');
+     35Ôûò 
+     36Ôûò         // Unauthorized users get redirected (302) not forbidden (403)
+  Ô×£  37Ôûò         $response->assertStatus(302);
+     38Ôûò     });
+     39Ôûò 
+     40Ôûò     test('super admin can view mail accounts page', function () {
+     41Ôûò         $response = $this->actingAs($this->superAdmin)
+
+
+  Tests:    1 failed, 17 passed (34 assertions)
+  Duration: 1.53s
+

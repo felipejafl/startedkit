@@ -3,7 +3,6 @@
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 uses(RefreshDatabase::class);
 
@@ -200,4 +199,3 @@ test('gate before super admin returns true for all abilities', function () {
     expect($user->can('users.view'))->toBeTrue();
     expect($user->can('any.random.ability'))->toBeTrue();
 });
-

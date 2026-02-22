@@ -54,5 +54,17 @@ class PermissionSeeder extends Seeder
         foreach ($permissionsPermissions as $permission) {
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
+
+        // Mail Accounts permissions
+        $mailAccountPermissions = [
+            'mail-accounts.viewAny',
+            'mail-accounts.view',
+            'mail-accounts.create',
+            'mail-accounts.update',
+            'mail-accounts.delete',
+        ];
+        foreach ($mailAccountPermissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+        }
     }
 }

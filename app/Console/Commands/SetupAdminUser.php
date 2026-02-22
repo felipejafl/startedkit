@@ -32,8 +32,9 @@ class SetupAdminUser extends Command
         $this->newLine();
 
         // Check if super-admin role exists
-        if (!Role::where('name', 'super-admin')->exists()) {
+        if (! Role::where('name', 'super-admin')->exists()) {
             $this->error('Super-admin role does not exist. Run seeders first: php artisan db:seed');
+
             return 1;
         }
 
@@ -41,8 +42,9 @@ class SetupAdminUser extends Command
         $email = $this->ask('Admin email', 'admin@example.com');
 
         // Validate email format
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->error('Invalid email format');
+
             return 1;
         }
 
@@ -52,8 +54,9 @@ class SetupAdminUser extends Command
         $existingUser = User::where('email', $email)->first();
         if ($existingUser) {
             $this->warn("User with email {$email} already exists");
-            if (!$this->confirm('Do you want to update it?')) {
+            if (! $this->confirm('Do you want to update it?')) {
                 $this->info('Cancelled');
+
                 return 0;
             }
         }
@@ -63,6 +66,7 @@ class SetupAdminUser extends Command
 
         if (strlen($password) < 8) {
             $this->error('Password must be at least 8 characters');
+
             return 1;
         }
 
@@ -70,6 +74,7 @@ class SetupAdminUser extends Command
         $passwordConfirm = $this->secret('Confirm password');
         if ($password !== $passwordConfirm) {
             $this->error('Passwords do not match');
+
             return 1;
         }
 
@@ -105,6 +110,7 @@ class SetupAdminUser extends Command
             return 0;
         } catch (\Exception $e) {
             $this->error('Error creating user: '.$e->getMessage());
+
             return 1;
         }
     }

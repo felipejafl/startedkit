@@ -106,5 +106,26 @@ class AuthorizationServiceProvider extends ServiceProvider
         Gate::define('permissions.delete', function (User $user) {
             return $user->hasPermissionTo('permissions.delete', 'web');
         });
+
+        // Mail accounts management gates
+        Gate::define('mail-accounts.viewAny', function (User $user) {
+            return $user->hasPermissionTo('mail-accounts.viewAny', 'web');
+        });
+
+        Gate::define('mail-accounts.view', function (User $user) {
+            return $user->hasPermissionTo('mail-accounts.view', 'web');
+        });
+
+        Gate::define('mail-accounts.create', function (User $user) {
+            return $user->hasPermissionTo('mail-accounts.create', 'web');
+        });
+
+        Gate::define('mail-accounts.update', function (User $user) {
+            return $user->hasPermissionTo('mail-accounts.update', 'web');
+        });
+
+        Gate::define('mail-accounts.delete', function (User $user) {
+            return $user->hasPermissionTo('mail-accounts.delete', 'web');
+        });
     }
 }

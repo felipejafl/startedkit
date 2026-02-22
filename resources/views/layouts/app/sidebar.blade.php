@@ -25,6 +25,12 @@
                             {{ __('Admin') }}
                         </flux:sidebar.item>
 
+                        @can('mail-accounts.viewAny')
+                            <flux:sidebar.item icon="envelope" :href="route('admin.mail-accounts.index')" :current="request()->routeIs('admin.mail-accounts.*')" wire:navigate>
+                                {{ __('Mail Accounts') }}
+                            </flux:sidebar.item>
+                        @endcan
+
                         @can('users.view')
                             <flux:sidebar.item icon="users" :href="route('admin.users.index')" :current="request()->routeIs('admin.users.*')" wire:navigate>
                                 {{ __('Users') }}
