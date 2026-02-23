@@ -1,0 +1,1204 @@
+
+  ..Ô¿».Ô¿»Ô¿»Ô¿»Ô¿»....Ô¿»Ô¿»...Ô¿»Ô¿»......Ô¿»!...Ô¿»Ô¿»Ô¿»...............Ô¿»...............Ô¿»...........
+  ............Ô¿»Ô¿»Ô¿»Ô¿»......Ô¿».........Ô¿».......
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTesÔÇª  BadMethodCallException   
+  Call to undefined method Illuminate\Http\RedirectResponse::assertStatusIn()
+
+  at vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+     63Ôûò      * @throws \BadMethodCallException
+     64Ôûò      */
+     65Ôûò     protected static function throwBadMethodCallException($method)
+     66Ôûò     {
+  Ô×£  67Ôûò         throw new BadMethodCallException(sprintf(
+     68Ôûò             'Call to undefined method %s::%s()', static::class, $method
+     69Ôûò         ));
+     70Ôûò     }
+     71Ôûò }
+
+  1   vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+  2   vendor\laravel\framework\src\Illuminate\Http\RedirectResponse.php:281
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTest > user with admin.acceÔÇª   
+  Expected response status code [>=200, <300] but received 302.
+Failed asserting that false is true.
+
+  at tests\Feature\Admin\AdminAuthorizationTest.php:40
+     36Ôûò     $user = User::factory()->create();
+     37Ôûò     $user->givePermissionTo('admin.access');
+     38Ôûò 
+     39Ôûò     $response = $this->actingAs($user)->get('/admin');
+  Ô×£  40Ôûò     $response->assertSuccessful();
+     41Ôûò });
+     42Ôûò 
+     43Ôûò test('super admin can access admin panel', function () {
+     44Ôûò     $user = User::factory()->create();
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTest > super admin can acceÔÇª   
+  Expected response status code [>=200, <300] but received 302.
+Failed asserting that false is true.
+
+  at tests\Feature\Admin\AdminAuthorizationTest.php:48
+     44Ôûò     $user = User::factory()->create();
+     45Ôûò     $user->assignRole('super-admin');
+     46Ôûò 
+     47Ôûò     $response = $this->actingAs($user)->get('/admin');
+  Ô×£  48Ôûò     $response->assertSuccessful();
+     49Ôûò });
+     50Ôûò 
+     51Ôûò // Users management authorization tests
+     52Ôûò test('user without users.view cannot access users list', function () {
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTesÔÇª  BadMethodCallException   
+  Call to undefined method Illuminate\Http\RedirectResponse::assertStatusIn()
+
+  at vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+     63Ôûò      * @throws \BadMethodCallException
+     64Ôûò      */
+     65Ôûò     protected static function throwBadMethodCallException($method)
+     66Ôûò     {
+  Ô×£  67Ôûò         throw new BadMethodCallException(sprintf(
+     68Ôûò             'Call to undefined method %s::%s()', static::class, $method
+     69Ôûò         ));
+     70Ôûò     }
+     71Ôûò }
+
+  1   vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+  2   vendor\laravel\framework\src\Illuminate\Http\RedirectResponse.php:281
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTest > user with users.viewÔÇª   
+  Expected response status code [>=200, <300] but received 302.
+Failed asserting that false is true.
+
+  at tests\Feature\Admin\AdminAuthorizationTest.php:65
+     61Ôûò     $user = User::factory()->create();
+     62Ôûò     $user->givePermissionTo(['admin.access', 'users.view']);
+     63Ôûò 
+     64Ôûò     $response = $this->actingAs($user)->get('/admin/users');
+  Ô×£  65Ôûò     $response->assertSuccessful();
+     66Ôûò });
+     67Ôûò 
+     68Ôûò test('user without users.create cannot create users', function () {
+     69Ôûò     $user = User::factory()->create();
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTesÔÇª  BadMethodCallException   
+  Call to undefined method Illuminate\Http\RedirectResponse::assertStatusIn()
+
+  at vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+     63Ôûò      * @throws \BadMethodCallException
+     64Ôûò      */
+     65Ôûò     protected static function throwBadMethodCallException($method)
+     66Ôûò     {
+  Ô×£  67Ôûò         throw new BadMethodCallException(sprintf(
+     68Ôûò             'Call to undefined method %s::%s()', static::class, $method
+     69Ôûò         ));
+     70Ôûò     }
+     71Ôûò }
+
+  1   vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+  2   vendor\laravel\framework\src\Illuminate\Http\RedirectResponse.php:281
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTest > user with roles.viewÔÇª   
+  Expected response status code [>=200, <300] but received 302.
+Failed asserting that false is true.
+
+  at tests\Feature\Admin\AdminAuthorizationTest.php:115
+    111Ôûò     $user = User::factory()->create();
+    112Ôûò     $user->givePermissionTo(['admin.access', 'roles.view']);
+    113Ôûò 
+    114Ôûò     $response = $this->actingAs($user)->get('/admin/roles');
+  Ô×£ 115Ôûò     $response->assertSuccessful();
+    116Ôûò });
+    117Ôûò 
+    118Ôûò test('user without roles.create cannot create roles', function () {
+    119Ôûò     $user = User::factory()->create();
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTesÔÇª  BadMethodCallException   
+  Call to undefined method Illuminate\Http\RedirectResponse::assertStatusIn()
+
+  at vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+     63Ôûò      * @throws \BadMethodCallException
+     64Ôûò      */
+     65Ôûò     protected static function throwBadMethodCallException($method)
+     66Ôûò     {
+  Ô×£  67Ôûò         throw new BadMethodCallException(sprintf(
+     68Ôûò             'Call to undefined method %s::%s()', static::class, $method
+     69Ôûò         ));
+     70Ôûò     }
+     71Ôûò }
+
+  1   vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+  2   vendor\laravel\framework\src\Illuminate\Http\RedirectResponse.php:281
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminAuthorizationTest > user with permissionÔÇª   
+  Expected response status code [>=200, <300] but received 302.
+Failed asserting that false is true.
+
+  at tests\Feature\Admin\AdminAuthorizationTest.php:153
+    149Ôûò     $user = User::factory()->create();
+    150Ôûò     $user->givePermissionTo(['admin.access', 'permissions.view']);
+    151Ôûò 
+    152Ôûò     $response = $this->actingAs($user)->get('/admin/permissions');
+  Ô×£ 153Ôûò     $response->assertSuccessful();
+    154Ôûò });
+    155Ôûò 
+    156Ôûò test('only super-admin can delete critical permissions', function () {
+    157Ôûò     $adminUser = User::factory()->create();
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\AdminUsersManagementTest > inactive user cannÔÇª   
+  The user is authenticated
+Failed asserting that true is false.
+
+  at tests\Feature\Admin\AdminUsersManagementTest.php:36
+     32Ôûò         'password' => 'password',
+     33Ôûò     ]);
+     34Ôûò 
+     35Ôûò     // After login attempt, if user is inactive, Fortify should reject
+  Ô×£  36Ôûò     $this->assertGuest();
+     37Ôûò });
+     38Ôûò 
+     39Ôûò // User creation validation
+     40Ôûò test('user email must be unique', function () {
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\MailAccountsTest > `Mail Accounts ManagementÔÇª    
+  Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+  at tests\Feature\Admin\MailAccountsTest.php:29
+     25Ôûò     test('admin can view mail accounts index page', function () {
+     26Ôûò         $response = $this->actingAs($this->admin)
+     27Ôûò             ->get('/admin/mail-accounts');
+     28Ôûò 
+  Ô×£  29Ôûò         $response->assertStatus(200);
+     30Ôûò     });
+     31Ôûò 
+     32Ôûò     test('unauthorized user is redirect from admin', function () {
+     33Ôûò         $response = $this->actingAs($this->user)
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\MailAccountsTest > `Mail Accounts ManagementÔÇª    
+  Expected response status code [403] but received 404.
+Failed asserting that 404 is identical to 403.
+
+  at tests\Feature\Admin\MailAccountsTest.php:37
+     33Ôûò         $response = $this->actingAs($this->user)
+     34Ôûò             ->get('/admin/mail-accounts');
+     35Ôûò 
+     36Ôûò         // Unauthorized users get 403 Forbidden
+  Ô×£  37Ôûò         $response->assertStatus(403);
+     38Ôûò     });
+     39Ôûò 
+     40Ôûò     test('super admin can view mail accounts page', function () {
+     41Ôûò         $response = $this->actingAs($this->superAdmin)
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\MailAccountsTest > `Mail Accounts ManagementÔÇª    
+  Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+  at tests\Feature\Admin\MailAccountsTest.php:44
+     40Ôûò     test('super admin can view mail accounts page', function () {
+     41Ôûò         $response = $this->actingAs($this->superAdmin)
+     42Ôûò             ->get('/admin/mail-accounts');
+     43Ôûò 
+  Ô×£  44Ôûò         $response->assertStatus(200);
+     45Ôûò     });
+     46Ôûò });
+     47Ôûò 
+     48Ôûò describe('Mail Account Model', function () {
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\RgpdContactsTest > `RGPD Contacts ManagementÔÇª    
+  Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+Spatie\Permission\Exceptions\PermissionDoesNotExist: There is no permission named `plantillas.viewAny` for guard `web`. in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Models\Permission.php(101): Spatie\Permission\Exceptions\PermissionDoesNotExist::create('plantillas.view...', 'web')
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Traits\HasPermissions.php(185): Spatie\Permission\Models\Permission::findByName('plantillas.view...', 'web')
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Traits\HasPermissions.php(211): App\Models\User->filterPermission('plantillas.view...', 'web')
+#3 D:\Documentos\Desarrollo\laravel\startedkit\app\Providers\AuthorizationServiceProvider.php(154): App\Models\User->hasPermissionTo('plantillas.view...', 'web')
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(553): App\Providers\AuthorizationServiceProvider->{closure:App\Providers\AuthorizationServiceProvider::boot():153}(Object(App\Models\User))
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(448): Illuminate\Auth\Access\Gate->callAuthCallback(Object(App\Models\User), 'plantillas.view...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(411): Illuminate\Auth\Access\Gate->raw('plantillas.view...', Array)
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(359): Illuminate\Auth\Access\Gate->inspect('plantillas.view...', Array)
+#8 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php(312): Illuminate\Auth\Access\Gate->{closure:Illuminate\Auth\Access\Gate::check():359}('plantillas.view...', 0)
+#9 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(358): Illuminate\Support\Collection->every(Object(Closure))
+#10 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\6829172858eb07af8c7af1125d3da2a7.php(357): Illuminate\Auth\Access\Gate->check('plantillas.view...')
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#14 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#19 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Concerns\ManagesComponents.php(103): Illuminate\View\View->render()
+#21 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\01909c0e7de80b2daf65c622bb489384.php(41): Illuminate\View\Factory->renderComponent()
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#24 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#31 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\534c730729c8753e807bea05d8e881f1.php(31): Illuminate\View\View->render()
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#35 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#63 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#65 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#73 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#75 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#83 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#84 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#85 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#86 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#87 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#88 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#89 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#90 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#91 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#92 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#93 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#94 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#95 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#96 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(35): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#97 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:32}:33}()
+#98 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#99 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#100 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#101 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#102 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#103 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(17): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#104 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contacts_Management___Page_Access__ÔåÆ_admin_can_view_rgpd_contacts_index_page()
+#105 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#106 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#107 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#108 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#109 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#110 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#111 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#112 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#113 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#114 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#115 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#116 {main}
+
+Next Illuminate\View\ViewException: There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(58): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Spatie\Permission\Exceptions\PermissionDoesNotExist), 4)
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(59): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->handleViewException(Object(Spatie\Permission\Exceptions\PermissionDoesNotExist), 4)
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#3 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#8 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Concerns\ManagesComponents.php(103): Illuminate\View\View->render()
+#9 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\01909c0e7de80b2daf65c622bb489384.php(41): Illuminate\View\Factory->renderComponent()
+#10 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#14 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#19 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\534c730729c8753e807bea05d8e881f1.php(31): Illuminate\View\View->render()
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#21 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#24 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#31 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#35 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#63 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#65 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#73 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#75 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#83 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#84 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(35): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#85 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:32}:33}()
+#86 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#87 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#88 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#89 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#90 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#91 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(17): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#92 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contacts_Management___Page_Access__ÔåÆ_admin_can_view_rgpd_contacts_index_page()
+#93 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#94 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#95 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#96 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#97 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#98 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#99 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#100 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#101 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#102 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#103 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#104 {main}
+
+Next Illuminate\View\ViewException: There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(58): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 3)
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(59): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 3)
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#3 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#8 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\534c730729c8753e807bea05d8e881f1.php(31): Illuminate\View\View->render()
+#9 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#10 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#14 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#19 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#21 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#24 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#31 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#35 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#63 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#65 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#73 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(35): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:32}:33}()
+#75 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(17): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contacts_Management___Page_Access__ÔåÆ_admin_can_view_rgpd_contacts_index_page()
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#83 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#84 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#85 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#86 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#87 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#88 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#89 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#90 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#91 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#92 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#93 {main}
+
+Next Illuminate\View\ViewException: There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(58): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 2)
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(59): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 2)
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#3 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#8 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#9 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#14 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#19 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#21 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#24 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#31 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#35 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#63 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(35): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:32}:33}()
+#65 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(17): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contacts_Management___Page_Access__ÔåÆ_admin_can_view_rgpd_contacts_index_page()
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#73 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#75 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#83 {main}
+
+----------------------------------------------------------------------------------
+
+There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php)
+
+  at tests\Feature\Admin\RgpdContactsTest.php:37
+     33Ôûò     test('admin can view rgpd contacts index page', function () {
+     34Ôûò         $response = $this->actingAs($this->admin)
+     35Ôûò             ->get('/rgpd/contacts');
+     36Ôûò 
+  Ô×£  37Ôûò         $response->assertStatus(200);
+     38Ôûò     });
+     39Ôûò 
+     40Ôûò     test('unauthorized user is denied from admin', function () {
+     41Ôûò         $response = $this->actingAs($this->user)
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Admin\RgpdContactsTest > `RGPD Contact AuthorizatioÔÇª   
+  Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+Spatie\Permission\Exceptions\PermissionDoesNotExist: There is no permission named `plantillas.viewAny` for guard `web`. in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Models\Permission.php(101): Spatie\Permission\Exceptions\PermissionDoesNotExist::create('plantillas.view...', 'web')
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Traits\HasPermissions.php(185): Spatie\Permission\Models\Permission::findByName('plantillas.view...', 'web')
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Traits\HasPermissions.php(211): App\Models\User->filterPermission('plantillas.view...', 'web')
+#3 D:\Documentos\Desarrollo\laravel\startedkit\app\Providers\AuthorizationServiceProvider.php(154): App\Models\User->hasPermissionTo('plantillas.view...', 'web')
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(553): App\Providers\AuthorizationServiceProvider->{closure:App\Providers\AuthorizationServiceProvider::boot():153}(Object(App\Models\User))
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(448): Illuminate\Auth\Access\Gate->callAuthCallback(Object(App\Models\User), 'plantillas.view...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(411): Illuminate\Auth\Access\Gate->raw('plantillas.view...', Array)
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(359): Illuminate\Auth\Access\Gate->inspect('plantillas.view...', Array)
+#8 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php(312): Illuminate\Auth\Access\Gate->{closure:Illuminate\Auth\Access\Gate::check():359}('plantillas.view...', 0)
+#9 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Access\Gate.php(358): Illuminate\Support\Collection->every(Object(Closure))
+#10 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\6829172858eb07af8c7af1125d3da2a7.php(357): Illuminate\Auth\Access\Gate->check('plantillas.view...')
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#14 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#19 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Concerns\ManagesComponents.php(103): Illuminate\View\View->render()
+#21 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\01909c0e7de80b2daf65c622bb489384.php(41): Illuminate\View\Factory->renderComponent()
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#24 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#31 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\534c730729c8753e807bea05d8e881f1.php(31): Illuminate\View\View->render()
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#35 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#63 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#65 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#73 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#75 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#83 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#84 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#85 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#86 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#87 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#88 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#89 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#90 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#91 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#92 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#93 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#94 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#95 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#96 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(168): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#97 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:166}:167}()
+#98 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#99 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#100 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#101 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#102 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#103 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(161): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#104 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contact_Authorization__ÔåÆ_admin_with_permission_can_access_the_page()
+#105 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#106 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#107 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#108 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#109 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#110 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#111 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#112 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#113 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#114 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#115 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#116 {main}
+
+Next Illuminate\View\ViewException: There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(58): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Spatie\Permission\Exceptions\PermissionDoesNotExist), 4)
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(59): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->handleViewException(Object(Spatie\Permission\Exceptions\PermissionDoesNotExist), 4)
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#3 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#8 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Concerns\ManagesComponents.php(103): Illuminate\View\View->render()
+#9 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\01909c0e7de80b2daf65c622bb489384.php(41): Illuminate\View\Factory->renderComponent()
+#10 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#14 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#19 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\534c730729c8753e807bea05d8e881f1.php(31): Illuminate\View\View->render()
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#21 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#24 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#31 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#35 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#63 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#65 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#73 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#75 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#83 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#84 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(168): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#85 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:166}:167}()
+#86 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#87 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#88 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#89 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#90 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#91 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(161): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#92 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contact_Authorization__ÔåÆ_admin_with_permission_can_access_the_page()
+#93 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#94 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#95 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#96 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#97 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#98 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#99 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#100 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#101 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#102 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#103 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#104 {main}
+
+Next Illuminate\View\ViewException: There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(58): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 3)
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(59): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 3)
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#3 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#8 D:\Documentos\Desarrollo\laravel\startedkit\storage\framework\views\534c730729c8753e807bea05d8e881f1.php(31): Illuminate\View\View->render()
+#9 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(123): require('D:\\Documentos\\D...')
+#10 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('D:\\Documentos\\D...', Array)
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#14 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#19 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#21 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#24 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#31 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#35 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#63 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#65 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#73 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(168): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:166}:167}()
+#75 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(161): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contact_Authorization__ÔåÆ_admin_with_permission_can_access_the_page()
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#83 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#84 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#85 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#86 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#87 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#88 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#89 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#90 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#91 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#92 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#93 {main}
+
+Next Illuminate\View\ViewException: There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) in D:\Documentos\Desarrollo\laravel\startedkit\vendor\spatie\laravel-permission\src\Exceptions\PermissionDoesNotExist.php:11
+Stack trace:
+#0 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(58): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 2)
+#1 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(59): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->handleViewException(Object(Illuminate\View\ViewException), 2)
+#2 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(22): Illuminate\View\Engines\PhpEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#3 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(76): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->evaluatePath('D:\\Documentos\\D...', Array)
+#4 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Mechanisms\ExtendBlade\ExtendedCompilerEngine.php(10): Illuminate\View\Engines\CompilerEngine->get('D:\\Documentos\\D...', Array)
+#5 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(208): Livewire\Mechanisms\ExtendBlade\ExtendedCompilerEngine->get('D:\\Documentos\\D...', Array)
+#6 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(191): Illuminate\View\View->getContents()
+#7 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\View.php(160): Illuminate\View\View->renderContents()
+#8 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(78): Illuminate\View\View->render()
+#9 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#10 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(939): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 200, Array)
+#11 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(906): Illuminate\Routing\Router::toResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#12 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+#13 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#14 D:\Documentos\Desarrollo\laravel\startedkit\app\Http\Middleware\EnsureAdminAccess.php(37): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#15 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\EnsureAdminAccess->handle(Object(Illuminate\Http\Request), Object(Closure))
+#16 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#17 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#18 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#19 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#20 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#21 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#23 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#24 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#25 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#26 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#27 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#28 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#29 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#30 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#31 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#32 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#33 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#34 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#35 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#36 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#37 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#38 D:\Documentos\Desarrollo\laravel\startedkit\vendor\livewire\livewire\src\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#39 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#40 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#41 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#42 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#43 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#44 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#45 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#46 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#47 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#48 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#49 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#53 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#55 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#57 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#59 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#60 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#61 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#62 D:\Documentos\Desarrollo\laravel\startedkit\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call('GET', '/rgpd/contacts', Array, Array, Array, Array)
+#63 D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php(168): Illuminate\Foundation\Testing\TestCase->get('/rgpd/contacts')
+#64 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Admin\RgpdContactsTest->{closure:{closure:D:\Documentos\Desarrollo\laravel\startedkit\tests\Feature\Admin\RgpdContactsTest.php:166}:167}()
+#65 [internal function]: P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#66 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): call_user_func_array(Object(Closure), Array)
+#67 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Admin\RgpdContactsTest->{closure:Pest\Concerns\Testable::__callClosure():429}()
+#68 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(429): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#69 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Concerns\Testable.php(331): P\Tests\Feature\Admin\RgpdContactsTest->__callClosure(Object(Closure), Array)
+#70 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(161): P\Tests\Feature\Admin\RgpdContactsTest->__runTest(Object(Closure))
+#71 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(1332): P\Tests\Feature\Admin\RgpdContactsTest->__pest_evaluable__RGPD_Contact_Authorization__ÔåÆ_admin_with_permission_can_access_the_page()
+#72 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#73 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#74 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestCase.php(359): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Admin\RgpdContactsTest))
+#75 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#76 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#77 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\Framework\TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#78 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#79 D:\Documentos\Desarrollo\laravel\startedkit\vendor\phpunit\phpunit\src\TextUI\Application.php(229): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#80 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#81 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#82 D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest(192): {closure:D:\Documentos\Desarrollo\laravel\startedkit\vendor\pestphp\pest\bin\pest:18}()
+#83 {main}
+
+----------------------------------------------------------------------------------
+
+There is no permission named `plantillas.viewAny` for guard `web`. (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php) (View: D:\Documentos\Desarrollo\laravel\startedkit\resources\views\layouts\app\sidebar.blade.php)
+
+  at tests\Feature\Admin\RgpdContactsTest.php:170
+    166Ôûò describe('RGPD Contact Authorization', function () {
+    167Ôûò     test('admin with permission can access the page', function () {
+    168Ôûò         $response = $this->actingAs($this->admin)->get('/rgpd/contacts');
+    169Ôûò 
+  Ô×£ 170Ôûò         $response->assertStatus(200);
+    171Ôûò     });
+    172Ôûò 
+    173Ôûò     test('user without permission cannot access the page', function () {
+    174Ôûò         $response = $this->actingAs($this->user)->get('/rgpd/contacts');
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Auth\EmailVerificationTestÔÇª   RouteNotFoundException   
+  Route [verification.notice] not defined.
+
+  at vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+    524Ôûò             ! is_null($url = call_user_func($this->missingNamedRouteResolver, $name, $parameters, $absolute))) {
+    525Ôûò             return $url;
+    526Ôûò         }
+    527Ôûò 
+  Ô×£ 528Ôûò         throw new RouteNotFoundException("Route [{$name}] not defined.");
+    529Ôûò     }
+    530Ôûò 
+    531Ôûò     /**
+    532Ôûò      * Get the URL for a given route instance.
+
+  1   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+  2   vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:870
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Auth\EmailVerificationTestÔÇª   RouteNotFoundException   
+  Route [verification.verify] not defined.
+
+  at vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+    524Ôûò             ! is_null($url = call_user_func($this->missingNamedRouteResolver, $name, $parameters, $absolute))) {
+    525Ôûò             return $url;
+    526Ôûò         }
+    527Ôûò 
+  Ô×£ 528Ôûò         throw new RouteNotFoundException("Route [{$name}] not defined.");
+    529Ôûò     }
+    530Ôûò 
+    531Ôûò     /**
+    532Ôûò      * Get the URL for a given route instance.
+
+  1   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+  2   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:375
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Auth\EmailVerificationTestÔÇª   RouteNotFoundException   
+  Route [verification.verify] not defined.
+
+  at vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+    524Ôûò             ! is_null($url = call_user_func($this->missingNamedRouteResolver, $name, $parameters, $absolute))) {
+    525Ôûò             return $url;
+    526Ôûò         }
+    527Ôûò 
+  Ô×£ 528Ôûò         throw new RouteNotFoundException("Route [{$name}] not defined.");
+    529Ôûò     }
+    530Ôûò 
+    531Ôûò     /**
+    532Ôûò      * Get the URL for a given route instance.
+
+  1   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+  2   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:375
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Auth\EmailVerificationTestÔÇª   RouteNotFoundException   
+  Route [verification.verify] not defined.
+
+  at vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+    524Ôûò             ! is_null($url = call_user_func($this->missingNamedRouteResolver, $name, $parameters, $absolute))) {
+    525Ôûò             return $url;
+    526Ôûò         }
+    527Ôûò 
+  Ô×£ 528Ôûò         throw new RouteNotFoundException("Route [{$name}] not defined.");
+    529Ôûò     }
+    530Ôûò 
+    531Ôûò     /**
+    532Ôûò      * Get the URL for a given route instance.
+
+  1   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:528
+  2   vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:375
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Auth\RegistrationTest > new users can register         
+  Session has unexpected errors: 
+
+{
+    "default": [
+        "The email has already been taken."
+    ]
+}
+Failed asserting that true is false.
+
+  at tests\Feature\Auth\RegistrationTest.php:17
+     13Ôûò         'password' => 'password',
+     14Ôûò         'password_confirmation' => 'password',
+     15Ôûò     ]);
+     16Ôûò 
+  Ô×£  17Ôûò     $response->assertSessionHasNoErrors()
+     18Ôûò         ->assertRedirect(route('dashboard', absolute: false));
+     19Ôûò 
+     20Ôûò     $this->assertAuthenticated();
+     21Ôûò });
+
+  ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ  
+   FAILED  Tests\Feature\Settings\ProfileUpdateTest > profile information caÔÇª   
+  Component has errors: "email" => ["The email has already been taken."]
+Failed asserting that false is true.
+
+  at vendor\livewire\livewire\src\Features\SupportValidation\TestsValidation.php:114
+    110Ôûò             $message .= collect($errors->toArray())->map(function ($messages, $key) {
+    111Ôûò                 return '"'.$key.'" => ["'.implode('", "', $messages).'"]';
+    112Ôûò             })->implode(', ');
+    113Ôûò 
+  Ô×£ 114Ôûò             PHPUnit::assertTrue($errors->isEmpty(), $message);
+    115Ôûò 
+    116Ôûò             return $this;
+    117Ôûò         }
+    118Ôûò
+
+  1   vendor\livewire\livewire\src\Features\SupportValidation\TestsValidation.php:114
+  2   tests\Feature\Settings\ProfileUpdateTest.php:22
+
+
+  Tests:    21 failed, 1 risky, 94 passed (190 assertions)
+  Duration: 9.14s
+

@@ -8,6 +8,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('rgpd.contacts');
     })->name('contacts.index');
 
+    // RGPD Templates Management
+    Route::get('/plantillas', function () {
+        return view('rgpd.plantillas');
+    })->name('plantillas.index');
+
     // Mail Accounts Management
     Route::get('/mail-accounts', function () {
         return view('rgpd.mail-accounts');

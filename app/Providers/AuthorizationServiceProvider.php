@@ -148,5 +148,26 @@ class AuthorizationServiceProvider extends ServiceProvider
         Gate::define('contacts.delete', function (User $user) {
             return $user->hasPermissionTo('contacts.delete', 'web');
         });
+
+        // RGPD plantillas management gates
+        Gate::define('plantillas.viewAny', function (User $user) {
+            return $user->hasPermissionTo('plantillas.viewAny', 'web');
+        });
+
+        Gate::define('plantillas.view', function (User $user) {
+            return $user->hasPermissionTo('plantillas.view', 'web');
+        });
+
+        Gate::define('plantillas.create', function (User $user) {
+            return $user->hasPermissionTo('plantillas.create', 'web');
+        });
+
+        Gate::define('plantillas.update', function (User $user) {
+            return $user->hasPermissionTo('plantillas.update', 'web');
+        });
+
+        Gate::define('plantillas.delete', function (User $user) {
+            return $user->hasPermissionTo('plantillas.delete', 'web');
+        });
     }
 }

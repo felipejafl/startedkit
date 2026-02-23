@@ -53,6 +53,12 @@
                             {{ __('Contacts') }}
                         </flux:sidebar.item>
 
+                        @can('plantillas.viewAny')
+                            <flux:sidebar.item icon="document" :href="route('rgpd.plantillas.index')" :current="request()->routeIs('rgpd.plantillas.*')" wire:navigate>
+                                {{ __('Templates') }}
+                            </flux:sidebar.item>
+                        @endcan
+
                         @can('mail-accounts.viewAny')
                             <flux:sidebar.item icon="envelope" :href="route('rgpd.mail-accounts.index')" :current="request()->routeIs('rgpd.mail-accounts.*')" wire:navigate>
                                 {{ __('Mail Accounts') }}
