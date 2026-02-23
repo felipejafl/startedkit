@@ -61,4 +61,18 @@ trait WithCrudListing
         $this->perPage = $count;
         $this->resetPage();
     }
+
+    /**
+     * Helpful reminder: When building queries in your Index component,
+     * ensure you use soft delete queries to exclude deleted records:
+     *
+     * $query = Model::query();
+     * // Soft delete is automatic - Eloquent excludes deleted_at != null by default
+     * // Only use ->withTrashed() or ->onlyTrashed() when explicitly needed
+     */
+    protected function applySoftDeleteFilter(): void
+    {
+        // Soft deletes are handled automatically by Eloquent
+        // Models with SoftDeletes trait exclude deleted_at != null from queries
+    }
 }

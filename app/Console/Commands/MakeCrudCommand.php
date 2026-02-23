@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 class MakeCrudCommand extends Command
 {
     protected $signature = 'make:crud {name : The resource name (Product, Category, etc)}
+        {--module=admin : The module where CRUD belongs (default: admin)}
         {--model : Create the model}
         {--migration : Create migration}
         {--factory : Create factory}
@@ -30,6 +31,7 @@ class MakeCrudCommand extends Command
     public function handle(): int
     {
         $name = $this->argument('name');
+        $module = $this->option('module') ?? 'admin';
         $all = $this->option('all');
 
         // Normalize name
@@ -38,7 +40,11 @@ class MakeCrudCommand extends Command
         $singularName = Str::singular(Str::kebab($modelName));
         $lowerName = Str::lower($modelName);
 
-        $this->info("Generating CRUD for: {$modelName}");
+        // Normalize module
+        $moduleName = Str::studly($module);
+        $moduleFolder = Str::kebab($module);
+
+        $this->info("Generating CRUD for: {$modelName} in module: {$moduleName}");
         $this->newLine();
 
         // Generate files based on options
@@ -63,16 +69,16 @@ class MakeCrudCommand extends Command
         }
 
         // Always generate Livewire components
-        $this->generateLivewireComponents($modelName, $pluralName);
+        $this->generateLivewireComponents($modelName, $pluralName, $moduleName, $moduleFolder);
 
         // Always generate views
-        $this->generateViews($modelName, $pluralName);
+        $this->generateViews($modelName, $pluralName, $moduleFolder);
 
         if ($all || $this->option('tests')) {
             $this->generateTests($modelName);
         }
 
-        $this->printNextSteps($modelName, $pluralName, $singularName);
+        $this->printNextSteps($modelName, $pluralName, $singularName, $module, $moduleFolder);
 
         return 0;
     }
@@ -94,10 +100,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class {MODEL} extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -109,6 +116,7 @@ class {MODEL} extends Model
         return [
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
+            'deleted_at' => 'datetime',
         ];
     }
 }
@@ -140,6 +148,7 @@ return new class extends Migration
             $table->string('name')->index();
             // Add more columns here
             $table->timestamps();
+            $table->softDeletes(); // Audit trail: soft delete instead of permanent deletion
         });
     }
 
@@ -276,10 +285,10 @@ PHP;
         $this->comment("✓ Policy created: {$policyPath}");
     }
 
-    private function generateLivewireComponents(string $name, string $pluralName): void
+    private function generateLivewireComponents(string $name, string $pluralName, string $moduleName = 'Admin', string $moduleFolder = 'admin'): void
     {
-        $namespace = "App\\Livewire\\Admin\\{$name}";
-        $componentPath = "app/Livewire/Admin/{$name}";
+        $namespace = "App\\Livewire\\{$moduleName}\\{$name}";
+        $componentPath = "app/Livewire/{$moduleName}/{$name}";
 
         // Create directory
         if (! File::isDirectory($componentPath)) {
@@ -371,9 +380,9 @@ PHP;
         // In real implementation, would create full Form.php and DeleteConfirm.php
     }
 
-    private function generateViews(string $name, string $pluralName): void
+    private function generateViews(string $name, string $pluralName, string $moduleFolder = 'admin'): void
     {
-        $viewPath = 'resources/views/livewire/admin/'.Str::kebab($pluralName);
+        $viewPath = "resources/views/livewire/{$moduleFolder}/".Str::kebab($pluralName);
 
         if (! File::isDirectory($viewPath)) {
             File::makeDirectory($viewPath, 0755, true);
@@ -529,37 +538,57 @@ PHP;
         $this->comment("✓ Test created: {$testPath}");
     }
 
-    private function printNextSteps(string $model, string $plural, string $singular): void
+    private function printNextSteps(string $model, string $plural, string $singular, string $module = 'admin', string $moduleFolder = 'admin'): void
     {
         $resource = Str::snake($model);
+        $moduleLowerCase = Str::lower($module);
 
         $this->newLine(2);
-        $this->info('📋 NEXT STEPS:');
+        $this->info('📋 NEXT STEPS (Ordered Workflow):');
         $this->newLine();
 
         $this->line('1️⃣  Update migration with your fields:');
         $this->comment("   database/migrations/*_create_{$plural}_table.php");
+        $this->line('   ✓ Remember: ->softDeletes() column for audit trail');
 
         $this->newLine();
-        $this->line('2️⃣  Add routes to routes/admin.php:');
-        $this->comment("   Route::get('/{$plural}', fn() => view('admin.{$plural}.index'))->name('{$resource}.index');");
+        $this->line('2️⃣  Add routes to routes/'.($module === 'admin' ? 'admin' : 'web').'.php:');
+        $this->comment("   Route::resource('{$plural}', {$model}Controller::class);");
 
         $this->newLine();
-        $this->line('3️⃣  Add gates to app/Providers/AuthorizationServiceProvider.php:');
+        $this->line('3️⃣  Create + publish Policy:');
+        $this->comment("   php artisan make:policy {$model}Policy -m {$model}");
+        $this->comment('   Then register in app/Providers/AuthorizationServiceProvider.php');
+
+        $this->newLine();
+        $this->line('4️⃣  Register CRUD gates:');
         $this->comment("   PermissionHelper::registerCrudGates('{$resource}');");
 
         $this->newLine();
-        $this->line('4️⃣  Create permission seeder:');
+        $this->line('5️⃣  Add sidebar menu item (resources/views/components/sidebar.blade.php):');
+        $this->comment("   @can('{$resource}.viewAny')");
+        $this->comment("       <x-nav-link :href=\"route('{$resource}.index')\"> {$plural} </x-nav-link>");
+        $this->comment('   @endcan');
+
+        $this->newLine();
+        $this->line('6️⃣  Create + run permission seeder:');
         $this->comment("   php artisan make:seeder Permissions/{$model}PermissionSeeder");
+        $this->comment('   Extend: database/seeders/Permissions/CrudPermissionSeeder.php');
+        $this->comment("   Then: php artisan db:seed --class=Permissions/{$model}PermissionSeeder");
 
         $this->newLine();
-        $this->line('5️⃣  Run migrations and seeders:');
+        $this->line('7️⃣  Run migrations:');
         $this->comment('   php artisan migrate');
-        $this->comment('   php artisan db:seed');
 
         $this->newLine();
-        $this->line('6️⃣  Run tests:');
-        $this->comment("   php artisan test tests/Feature/Admin/{$model}Test.php");
+        $this->line('8️⃣  Run feature tests:');
+        $this->comment("   php artisan test tests/Feature/{$module}/{$model}Test.php");
+
+        $this->newLine();
+        $this->line('9️⃣  Verify in UI:');
+        $this->comment("   • Check sidebar menu shows {$plural} (if you have permission)");
+        $this->comment('   • Verify Create/Edit/Delete buttons only show when authorized');
+        $this->comment('   • Test soft delete (records archived, not permanently deleted)');
 
         $this->newLine();
         $this->line('📖 Full documentation: .github/skills/crud/SKILL.md');

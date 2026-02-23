@@ -27,8 +27,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
-            $table->boolean('is_active')->default(true)->index();
             $table->timestamps();
+            $table->softDeletes(); // Audit trail: soft delete for archiving
         });
     }
 
@@ -48,10 +48,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -59,14 +60,15 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'is_active',
     ];
 
     protected function casts(): array
     {
         return [
             'price' => 'decimal:2',
-            'is_active' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'deleted_at' => 'datetime',
         ];
     }
 }
@@ -91,14 +93,13 @@ class ProductFactory extends Factory
             'description' => fake()->paragraph(),
             'price' => fake()->randomFloat(2, 10, 500),
             'stock' => fake()->numberBetween(0, 1000),
-            'is_active' => true,
         ];
     }
 
-    public function inactive(): static
+    public function archived(): static
     {
         return $this->state(fn() => [
-            'is_active' => false,
+            'deleted_at' => now(),
         ]);
     }
 }
@@ -280,8 +281,6 @@ class Index extends Component
 
     public string $search = '';
 
-    public string $filterStatus = '';
-
     public bool $showForm = false;
 
     public bool $showDelete = false;
@@ -290,7 +289,7 @@ class Index extends Component
 
     public ?Product $deletingProduct = null;
 
-    protected $queryString = ['search', 'filterStatus'];
+    protected $queryString = ['search'];
 
     public function mount(): void
     {
@@ -328,7 +327,6 @@ class Index extends Component
     public function resetFilters(): void
     {
         $this->search = '';
-        $this->filterStatus = '';
         $this->resetPage();
     }
 
@@ -341,9 +339,8 @@ class Index extends Component
                 ->orWhere('description', 'like', "%{$this->search}%");
         }
 
-        if ($this->filterStatus !== '') {
-            $query->where('is_active', $this->filterStatus === '1');
-        }
+        // Soft delete: automatically excludes deleted_at != null
+        // Use ->withTrashed() or ->onlyTrashed() if needed for admin views
 
         $products = $query->latest()->paginate(15);
 
@@ -386,8 +383,6 @@ class Form extends Component
 
     public string $formStock = '';
 
-    public bool $formIsActive = true;
-
     protected $listeners = ['openForm' => 'open'];
 
     protected function rules(): array
@@ -419,7 +414,6 @@ class Form extends Component
             $this->formDescription = $product->description ?? '';
             $this->formPrice = (string) $product->price;
             $this->formStock = (string) $product->stock;
-            $this->formIsActive = $product->is_active;
         } else {
             $this->authorize('products.create');
         }
@@ -438,7 +432,6 @@ class Form extends Component
                 'description' => $this->formDescription ?: null,
                 'price' => (float) $this->formPrice,
                 'stock' => (int) $this->formStock,
-                'is_active' => $this->formIsActive,
             ]);
             $this->dispatch('flash', type: 'success', message: 'Product updated successfully!');
         } else {
@@ -449,7 +442,6 @@ class Form extends Component
                 'description' => $this->formDescription ?: null,
                 'price' => (float) $this->formPrice,
                 'stock' => (int) $this->formStock,
-                'is_active' => $this->formIsActive,
             ]);
             $this->dispatch('flash', type: 'success', message: 'Product created successfully!');
         }
@@ -461,7 +453,7 @@ class Form extends Component
     public function close(): void
     {
         $this->show = false;
-        $this->reset(['product', 'formName', 'formDescription', 'formPrice', 'formStock', 'formIsActive']);
+        $this->reset(['product', 'formName', 'formDescription', 'formPrice', 'formStock']);
     }
 
     public function render()
@@ -558,16 +550,7 @@ class DeleteConfirm extends Component
             icon="magnifying-glass"
         />
 
-        <flux:select 
-            wire:model.live="filterStatus"
-            label="Status"
-        >
-            <option value="">All</option>
-            <option value="1">Active</option>
-            <option value="0">Inactive</option>
-        </flux:select>
-
-        @if($search || $filterStatus)
+        @if($search)
             <flux:button 
                 wire:click="resetFilters"
                 variant="ghost"
@@ -586,7 +569,6 @@ class DeleteConfirm extends Component
                         <th>Name</th>
                         <th>Price</th>
                         <th>Stock</th>
-                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -596,13 +578,6 @@ class DeleteConfirm extends Component
                             <td class="font-medium">{{ $product->name }}</td>
                             <td>${{ number_format($product->price, 2) }}</td>
                             <td>{{ $product->stock }}</td>
-                            <td>
-                                @if($product->is_active)
-                                    <flux:badge color="green">Active</flux:badge>
-                                @else
-                                    <flux:badge color="gray">Inactive</flux:badge>
-                                @endif
-                            </td>
                             <td>
                                 <div class="flex gap-2">
                                     @can('products.update')

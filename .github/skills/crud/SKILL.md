@@ -347,7 +347,140 @@ $admin->syncPermissions([
 
 ---
 
-## 8. HELPFUL COMMANDS
+## 8. SOFT DELETE PATTERN
+
+Soft deletes provide audit trails by archiving records instead of permanently deleting them.
+
+### Model Setup
+```php
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Product extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'deleted_at' => 'datetime', // Required for soft delete casting
+        ];
+    }
+}
+```
+
+### Migration Setup
+```php
+Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->string('name')->index();
+    // ... other fields
+    $table->timestamps();
+    $table->softDeletes(); // Adds deleted_at column, nullable timestamp
+});
+```
+
+### Query Behavior
+```php
+// Automatically excludes soft-deleted records
+Product::all(); // Only returns non-deleted records
+
+// Include soft-deleted records
+Product::withTrashed()->get();
+
+// Only soft-deleted records
+Product::onlyTrashed()->get();
+
+// Restore a soft-deleted record
+$product = Product::withTrashed()->find($id);
+$product->restore(); // Sets deleted_at = null
+
+// Permanently delete (hard delete)
+$product->forceDelete();
+```
+
+### Delete Permission Behavior
+The `{resource}.delete` gate/policy should:
+1. Show "Delete" button in UI only if user has permission
+2. Use `$product->delete()` which sets `deleted_at = now()` (soft delete)
+3. Listing queries automatically hide soft-deleted records
+4. Optionally show "Archived" or "Deleted At" column with restore button for admins
+
+---
+
+## 9. SIDEBAR INTEGRATION
+
+Dynamically show/hide menu items based on permissions using `@can`.
+
+### Sidebar Component
+```blade
+{{-- resources/views/components/sidebar.blade.php --}}
+<x-sidebar>
+    @can('products.viewAny')
+        <x-nav-link 
+            href="{{ route('products.index') }}"
+            :active="request()->routeIs('products.*')"
+        >
+            Products
+        </x-nav-link>
+    @endcan
+
+    @can('categories.viewAny')
+        <x-nav-link 
+            href="{{ route('categories.index') }}"
+            :active="request()->routeIs('categories.*')"
+        >
+            Categories
+        </x-nav-link>
+    @endcan
+    
+    {{-- More menu items --}}
+</x-sidebar>
+```
+
+### Nav Link Component
+```blade
+{{-- resources/views/components/nav-link.blade.php --}}
+@props(['href' => '#', 'active' => false])
+
+<a 
+    href="{{ $href }}"
+    {{ $attributes->class([
+        'block px-4 py-2 rounded-lg text-sm font-medium transition-colors',
+        'bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-100' => $active,
+        'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800' => !$active,
+    ]) }}
+>
+    {{ $slot }}
+</a>
+```
+
+### Action Button Visibility
+Show action buttons only if user has permission:
+```blade
+<div class="flex gap-2">
+    @can('products.update')
+        <flux:button wire:click="openEditForm({{ $product->id }})" size="sm">
+            Edit
+        </flux:button>
+    @endcan
+
+    @can('products.delete')
+        <flux:button 
+            wire:click="openDeleteForm({{ $product->id }})" 
+            size="sm" 
+            variant="danger"
+        >
+            Delete
+        </flux:button>
+    @endcan
+</div>
+```
+
+---
+
+## 10. HELPFUL COMMANDS
 
 ```bash
 # Create model with factory and migration
