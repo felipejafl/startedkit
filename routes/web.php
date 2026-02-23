@@ -13,4 +13,7 @@ Route::view('dashboard', 'dashboard')
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(base_path('routes/admin.php'));
 
+// RGPD Routes
+Route::prefix('rgpd')->name('rgpd.')->group(base_path('routes/rgpd.php'));
+
 require __DIR__.'/settings.php';

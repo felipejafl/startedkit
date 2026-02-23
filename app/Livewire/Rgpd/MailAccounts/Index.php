@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\MailAccounts;
+namespace App\Livewire\Rgpd\MailAccounts;
 
 use App\Models\MailAccount;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -189,7 +189,7 @@ class Index extends Component
             $query->where('is_active', (bool) $this->filterStatus);
         }
 
-        return view('livewire.admin.mail-accounts.index', [
+        return view('livewire.rgpd.mail-accounts.index', [
             'accounts' => $query->paginate(15),
         ]);
     }

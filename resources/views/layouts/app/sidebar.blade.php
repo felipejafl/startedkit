@@ -25,12 +25,6 @@
                             {{ __('Admin') }}
                         </flux:sidebar.item>
 
-                        @can('mail-accounts.viewAny')
-                            <flux:sidebar.item icon="envelope" :href="route('admin.mail-accounts.index')" :current="request()->routeIs('admin.mail-accounts.*')" wire:navigate>
-                                {{ __('Mail Accounts') }}
-                            </flux:sidebar.item>
-                        @endcan
-
                         @can('users.view')
                             <flux:sidebar.item icon="users" :href="route('admin.users.index')" :current="request()->routeIs('admin.users.*')" wire:navigate>
                                 {{ __('Users') }}
@@ -46,6 +40,22 @@
                         @can('permissions.view')
                             <flux:sidebar.item icon="key" :href="route('admin.permissions.index')" :current="request()->routeIs('admin.permissions.*')" wire:navigate>
                                 {{ __('Permissions') }}
+                            </flux:sidebar.item>
+                        @endcan
+                    </flux:sidebar.group>
+                </flux:sidebar.nav>
+            @endif
+
+            @if(auth()->user()->can('contacts.viewAny'))
+                <flux:sidebar.nav>
+                    <flux:sidebar.group :heading="__('RGPD')">
+                        <flux:sidebar.item icon="shield-exclamation" :href="route('rgpd.contacts.index')" :current="request()->routeIs('rgpd.contacts.*')" wire:navigate>
+                            {{ __('Contacts') }}
+                        </flux:sidebar.item>
+
+                        @can('mail-accounts.viewAny')
+                            <flux:sidebar.item icon="envelope" :href="route('rgpd.mail-accounts.index')" :current="request()->routeIs('rgpd.mail-accounts.*')" wire:navigate>
+                                {{ __('Mail Accounts') }}
                             </flux:sidebar.item>
                         @endcan
                     </flux:sidebar.group>

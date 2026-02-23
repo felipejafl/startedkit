@@ -22,9 +22,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/permissions', function () {
         return view('admin.permissions.index');
     })->name('permissions.index');
-
-    // Mail Accounts Management
-    Route::get('/mail-accounts', function () {
-        return view('admin.mail-accounts.index');
-    })->name('mail-accounts.index');
 });

@@ -127,5 +127,26 @@ class AuthorizationServiceProvider extends ServiceProvider
         Gate::define('mail-accounts.delete', function (User $user) {
             return $user->hasPermissionTo('mail-accounts.delete', 'web');
         });
+
+        // RGPD contacts management gates
+        Gate::define('contacts.viewAny', function (User $user) {
+            return $user->hasPermissionTo('contacts.viewAny', 'web');
+        });
+
+        Gate::define('contacts.view', function (User $user) {
+            return $user->hasPermissionTo('contacts.view', 'web');
+        });
+
+        Gate::define('contacts.create', function (User $user) {
+            return $user->hasPermissionTo('contacts.create', 'web');
+        });
+
+        Gate::define('contacts.update', function (User $user) {
+            return $user->hasPermissionTo('contacts.update', 'web');
+        });
+
+        Gate::define('contacts.delete', function (User $user) {
+            return $user->hasPermissionTo('contacts.delete', 'web');
+        });
     }
 }

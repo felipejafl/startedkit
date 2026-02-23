@@ -66,5 +66,17 @@ class PermissionSeeder extends Seeder
         foreach ($mailAccountPermissions as $permission) {
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
+
+        // RGPD Contacts permissions
+        $contactPermissions = [
+            'contacts.viewAny',
+            'contacts.view',
+            'contacts.create',
+            'contacts.update',
+            'contacts.delete',
+        ];
+        foreach ($contactPermissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+        }
     }
 }
