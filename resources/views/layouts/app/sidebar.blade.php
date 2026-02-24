@@ -64,6 +64,18 @@
                                 {{ __('Mail Accounts') }}
                             </flux:sidebar.item>
                         @endcan
+
+                        @can('mail-accounts.viewAny')
+                            <flux:sidebar.item icon="inbox" :href="route('rgpd.inbox')" :current="request()->routeIs('rgpd.inbox')" wire:navigate>
+                                {{ __('Inbox') }}
+                            </flux:sidebar.item>
+                        @endcan
+
+                        @can('firmas.viewAny')
+                            <flux:sidebar.item icon="document" :href="route('rgpd.firmas.index')" :current="request()->routeIs('rgpd.firmas.*')" wire:navigate>
+                                {{ __('Firmas') }}
+                            </flux:sidebar.item>
+                        @endcan
                     </flux:sidebar.group>
                 </flux:sidebar.nav>
             @endif

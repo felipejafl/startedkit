@@ -17,4 +17,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/mail-accounts', function () {
         return view('rgpd.mail-accounts');
     })->name('mail-accounts.index');
+
+    // Inbox
+    Route::get('/inbox', function () {
+        return view('rgpd.inbox');
+    })->name('inbox');
+
+    // RGPD Firmas Management
+    Route::get('/firmas', function () {
+        return view('rgpd.firmas');
+    })->name('firmas.index');
 });

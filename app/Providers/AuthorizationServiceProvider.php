@@ -169,5 +169,26 @@ class AuthorizationServiceProvider extends ServiceProvider
         Gate::define('plantillas.delete', function (User $user) {
             return $user->hasPermissionTo('plantillas.delete', 'web');
         });
+
+        // RGPD firmas management gates
+        Gate::define('firmas.viewAny', function (User $user) {
+            return $user->hasPermissionTo('firmas.viewAny', 'web');
+        });
+
+        Gate::define('firmas.view', function (User $user) {
+            return $user->hasPermissionTo('firmas.view', 'web');
+        });
+
+        Gate::define('firmas.create', function (User $user) {
+            return $user->hasPermissionTo('firmas.create', 'web');
+        });
+
+        Gate::define('firmas.update', function (User $user) {
+            return $user->hasPermissionTo('firmas.update', 'web');
+        });
+
+        Gate::define('firmas.delete', function (User $user) {
+            return $user->hasPermissionTo('firmas.delete', 'web');
+        });
     }
 }
